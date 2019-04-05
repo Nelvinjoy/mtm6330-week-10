@@ -49,21 +49,43 @@ $('#content').fadeOut(500, function(){
 
 
 })//closing click event on the content nav bar
+// $.ajax({
+//   url: './data/posts.json',
+//   type: 'GET',
+//   dataType:'json'
+// }).done(function(data){
+// var numPosts = data.posts.length
+//   for (var i = 0 ;  i <= numPosts ;  i++){
+//   var post = '<div class="col-sm-6 p-5"><h3>'
+// post+= (i+1)+'.'+data.posts[i].title
+//   post +='</h3><p>'
+//   post+= data.posts[i].body
+//     post +='</p></div>'
+//     console.log(posts)
+//     $('#posts').append(post)
+// }
+//
+// })
 $.ajax({
-  url: './data/posts.json',
+  url: 'http://jsonplaceholder.typicode.com/posts',
   type: 'GET',
   dataType:'json'
 }).done(function(data){
-var numPosts = data.posts.length
-  for (var i = 0 ;  i <= numPosts ;  i++){
+var numPosts = data.length
+  for (var i = 0 ;  i < numPosts ;  i++){
   var post = '<div class="col-sm-6 p-5"><h3>'
-post+= (i+1)+'.'+data.posts[i].title
-  post +='</h3><p>'
-  post+= data.posts[i].body
+
+post+= data[i].id
+  post +='</h3><h2><p>'
+  post+= data[i].title
+  post+= '</h2></p><p>'
+  post+=data[i].body
     post +='</p></div>'
     console.log(posts)
     $('#posts').append(post)
 }
 
-})
+})//closing the ajax done
+AOS.init();
+
 } )//closing the document.ready method
